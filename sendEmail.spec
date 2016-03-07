@@ -31,9 +31,11 @@ easy to learn and use.
 %install
 %{__install} -d %{buildroot}%{_bindir}/
 %{__install} -m 0755 -p %{name} %{buildroot}%{_bindir}/
+ln -s %{_bindir}/%{name} %{buildroot}%{_bindir}/%{name}.pl
 
 %files
 %{_bindir}/%{name}
+%{_bindir}/%{name}.pl
 %doc CHANGELOG README TODO
 
 %changelog
