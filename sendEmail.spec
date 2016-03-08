@@ -5,12 +5,14 @@ Summary:  An Email program for sending SMTP mail from a command line
 
 License: GPLv2+
 URL: http://caspian.dotconf.net/menu/Software/SendEmail/
-
-Source0: http://caspian.dotconf.net/menu/Software/SendEmail/%{name}-v%{version}.tar.gz
-Source1: http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
 BuildArch: noarch
 
-#Requires: perl
+Source0: http://caspian.dotconf.net/menu/Software/SendEmail/%{name}-v%{version}.tar.gz
+
+# Remove explicit setting of SSL version
+# http://unix.stackexchange.com/a/258820/86764
+Patch0: %{name}-remove-ssl-version.patch
+
 
 %description
 SendEmail is a lightweight, command line SMTP email client. If you
@@ -24,6 +26,8 @@ easy to learn and use.
 
 %prep
 %setup -q -n %{name}-v%{version}
+
+%patch0 -p1
 
 %build
 # nothing to do
